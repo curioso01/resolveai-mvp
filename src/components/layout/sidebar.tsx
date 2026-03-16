@@ -1,11 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { logoutAction } from "@/app/actions/auth";
+import { usePathname, useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/browser";
 
-export function Sidebar({ title, items }: { title: string; items: { href: string; label: string }[] }) {
+export function Sidebar({
+  title,
+  items,
+}: {
+  title: string;
+  items: { href: string; label: string }[];
+}) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  async function handleLogout() {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push("/");
+    router.refresh();
+  }
 
   return (
     <aside className="flex min-h-screen w-64 flex-col border-r bg-panel p-4">
@@ -16,18 +30,22 @@ export function Sidebar({ title, items }: { title: string; items: { href: string
             key={item.href}
             href={item.href}
             className={`block rounded-lg px-3 py-2 transition ${
-              pathname === item.href ? "bg-panelSoft font-semibold text-primary" : "hover:bg-panelSoft"
+              pathname === item.href
+                ? "bg-panelSoft font-semibold text-primary"
+                : "hover:bg-panelSoft"
             }`}
           >
             {item.label}
           </Link>
         ))}
       </nav>
-      <form action={logoutAction}>
-        <button className="w-full rounded-lg px-3 py-2 text-left text-sm text-muted hover:bg-panelSoft" type="submit">
-          Sair
-        </button>
-      </form>
+      <button
+        onClick={handleLogout}
+        className="w-full rounded-lg px-3 py-2 text-left text-sm text-muted hover:bg-panelSoft"
+        type="button"
+      >
+        Sair
+      </button>
     </aside>
   );
 }
