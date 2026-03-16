@@ -76,13 +76,8 @@ export async function registerAction(_: ActionState | undefined, formData: FormD
   redirect("/login");
 }
 
-export async function logoutAction(): Promise<ActionState> {
+export async function logoutAction() {
   const supabase = await createClient();
-  const { error } = await supabase.auth.signOut();
-
-  if (error) {
-    return { error: error.message };
-  }
-
+  await supabase.auth.signOut();
   redirect("/");
 }

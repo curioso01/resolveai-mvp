@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { logoutAction } from "@/app/actions/auth";
+import { LogoutButton } from "@/components/layout/logout-button";
 
 export function Sidebar({ title, items }: { title: string; items: { href: string; label: string }[] }) {
   const pathname = usePathname();
@@ -23,11 +23,7 @@ export function Sidebar({ title, items }: { title: string; items: { href: string
           </Link>
         ))}
       </nav>
-      <form action={logoutAction}>
-        <button className="w-full rounded-lg px-3 py-2 text-left text-sm text-muted hover:bg-panelSoft" type="submit">
-          Sair
-        </button>
-      </form>
+      <LogoutButton />
     </aside>
   );
 }
