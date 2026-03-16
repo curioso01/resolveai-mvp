@@ -76,6 +76,11 @@ export async function registerAction(_: ActionState | undefined, formData: FormD
   redirect("/login");
 }
 
+codex/create-complete-next.js-project-structure-b8erp9
+export async function logoutAction(): Promise<void> {
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+
 export async function logoutAction(): Promise<ActionState> {
   const supabase = await createClient();
   const { error } = await supabase.auth.signOut();
@@ -84,5 +89,6 @@ export async function logoutAction(): Promise<ActionState> {
     return { error: error.message };
   }
 
+main
   redirect("/");
 }
