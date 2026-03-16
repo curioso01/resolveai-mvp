@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --color-bg: #050b1a;
+  --color-panel: #0d1830;
+  --color-panel-soft: #14213f;
+  --color-border: #233253;
+  --color-text: #f3f7ff;
+  --color-muted: #9eb1d1;
+  --color-primary: #1f6fff;
+  --color-success: #20c997;
+  --color-warning: #f8c146;
+  --color-danger: #ff5d73;
+}
+
+body { @apply bg-bg text-text antialiased; }
+* { @apply border-border; }
+
+.card { @apply rounded-xl2 border bg-panel p-4 shadow-premium; }
+.input-base { @apply w-full rounded-xl border bg-panelSoft px-3 py-2 text-sm text-text placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary; }
