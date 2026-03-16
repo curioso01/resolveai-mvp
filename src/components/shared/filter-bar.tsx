@@ -1,0 +1,1 @@
+import { Button } from "@/components/ui/button"; export const FilterBar=()=> <div className="flex flex-wrap gap-2"><Button variant="outline">Preço</Button><Button variant="outline">Avaliação</Button><Button variant="outline">Distância</Button></div>;
