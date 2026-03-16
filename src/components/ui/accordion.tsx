@@ -1,0 +1,1 @@
+export function Accordion({ items }: { items: {title:string;content:string}[] }) { return <div className="space-y-2">{items.map(i=><details key={i.title} className="card"><summary className="cursor-pointer font-semibold">{i.title}</summary><p className="mt-2 text-sm text-muted">{i.content}</p></details>)}</div>; }
